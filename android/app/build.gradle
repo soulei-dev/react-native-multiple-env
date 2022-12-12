@@ -1,5 +1,13 @@
 apply plugin: "com.android.application"
 
+project.ext.envConfigFiles = [
+    development: ".env.development",
+    staging: ".env.staging",
+    production: ".env.production",
+]
+
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
+
 import com.android.build.OutputFile
 import org.apache.tools.ant.taskdefs.condition.Os
 
@@ -158,6 +166,28 @@ android {
                     abiFilters (*reactNativeArchitectures())
                 }
             }
+        }
+    }
+
+    flavorDimensions "default"
+    productFlavors {
+        development {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.rnmultipleenv.development"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.rnmultipleenv"
+        }
+        staging {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.rnmultipleenv.staging"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.rnmultipleenv"
+        }
+        production {
+            minSdkVersion rootProject.ext.minSdkVersion
+            applicationId "com.rnmultipleenv"
+            targetSdkVersion rootProject.ext.targetSdkVersion
+            resValue "string", "build_config_package", "com.rnmultipleenv"
         }
     }
 

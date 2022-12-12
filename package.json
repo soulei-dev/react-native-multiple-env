@@ -5,13 +5,17 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "android:dev": "react-native run-android --variant=developmentDebug --appIdSuffix=development",
+    "android:staging": "react-native run-android --variant=stagingDebug --appIdSuffix=staging",
+    "android:prod": "react-native run-android --variant=productionDebug",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
     "react": "18.1.0",
-    "react-native": "0.70.6"
+    "react-native": "0.70.6",
+    "react-native-config": "^1.4.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
